@@ -1,0 +1,5 @@
+FROM thehipbot/golang:1.8-onbuild
+ENV GOOS=linux
+ENV CGO_ENABLED=0
+RUN mkdir /build
+CMD ["go", "build", "-a", "-installsuffix", "cgo", "-o", "/build/main"]

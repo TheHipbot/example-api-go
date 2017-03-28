@@ -1,0 +1,7 @@
+FROM alpine
+
+EXPOSE 8080
+
+ADD build/main /app/
+
+CMD ["/app/main"]
