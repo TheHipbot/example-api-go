@@ -10,7 +10,7 @@ PKG_PREFIX := "github.com/TheHipbot/${PKG_NAME}"
 
 # Build info
 VERSION := 1.0.0
-BUILD := `git rev-parse HEAD`
+BUILD := `git rev-parse --short HEAD`
 
 .DEFAULT_GOAL: $(BINARY)
 
@@ -39,4 +39,4 @@ build: sync $(SOURCES)
 
 .PHONY: docker-build
 docker-build:
-	docker build -t "thehipbot/${PKG_NAME}" --build-arg PACKAGE=$(PKG_PREFIX) .
+	docker build -t "thehipbot/${PKG_NAME}:${BUILD}" --build-arg PACKAGE=$(PKG_PREFIX) .
