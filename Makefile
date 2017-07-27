@@ -37,6 +37,10 @@ sync:
 build: sync $(SOURCES)
 	CGO_ENABLED=0 $(GOCMD) build -a -installsuffix cgo -o ${BINARY}
 
+.PHONY: test
+test: 
+	go test ./...
+
 .PHONY: docker-build
 docker-build:
 	docker build -t "thehipbot/${PKG_NAME}:${BUILD}" --build-arg PACKAGE=$(PKG_PREFIX) .
