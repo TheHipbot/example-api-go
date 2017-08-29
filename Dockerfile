@@ -1,5 +1,5 @@
 # Build stage
-FROM golang:1.8
+FROM golang:1.8 as build
 RUN mkdir -p /go/src/app && \
     go get -u github.com/kardianos/govendor
 ARG PACKAGE=github.com/TheHipbot/example-api-go
@@ -13,6 +13,6 @@ EXPOSE 8080
 USER nobody
 ARG PACKAGE=github.com/TheHipbot/example-api-go
 
-COPY --from=0 /go/src/${PACKAGE}/main /app/
+COPY --from=build /go/src/${PACKAGE}/main /app/
 
 CMD ["/app/main"]
